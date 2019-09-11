@@ -6,7 +6,6 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "webpack",
-    "start": "webpack --watch",
     "autoprefixer": "postcss -u autoprefixer -r dist/assets/styles/*.css",
     "imagemin": "imagemin app/common/images/*.{png,jpg,gif}  --out-dir=dist/assets/images/",
     "uglify": "mkdirp dist/assets/scripts && uglifyjs app/common/scripts/*.js -m -o dist/assets/scripts/app.js && uglifyjs app/common/scripts/*.js -m -c -o dist/assets/scripts/app.min.js",
@@ -19,7 +18,10 @@
     "build:images": "npm run imagemin && npm run icons",
     "build:all": "npm run clean && npm run build:styles && npm run build:scripts && npm run build:images",
     "watch:styles": "onchange 'app/**/*.scss' -- npm run build:styles",
-    "watch:scripts": "onchange 'app/**/*.js' -- npm run build:scripts"
+    "watch:scripts": "onchange 'app/**/*.js' -- npm run build:scripts",
+    "watch": "parallelshell \"npm run server\" \"npm run watch:styles\" \"npm run watch:scripts\"",
+    "start": "npm run build:all && npm run watch",
+    "production": "npm run clear && npm run build:all && npm run copy"
   },
   "author": "Alesia and Jane",
   "license": "ISC",

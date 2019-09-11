@@ -1,9 +1,16 @@
+const path = require('path');
+const isProduction = process.env.NODE_ENV === "production";
 
-module.exports = {
-  entry: {
-		app: "./app/common/scripts/app.js"
-	},
-	output: {
-		filename: "[name].min.js"
-	}
+const config = {
+    mode: isProduction ? "production" : "development",
+    entry: {
+        app: "./app/common/scripts/app.js"
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist/assets/scripts'),
+        filename: "[name].min.js"
+    },
+    devtool: isProduction ? false : "source-map"
 };
+
+module.exports = config;
