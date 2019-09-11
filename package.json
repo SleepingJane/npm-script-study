@@ -11,17 +11,17 @@
     "uglify": "mkdirp dist/assets/scripts && uglifyjs app/common/scripts/*.js -m -o dist/assets/scripts/app.js && uglifyjs app/common/scripts/*.js -m -c -o dist/assets/scripts/app.min.js",
     "icons": "svgo -f app/common/icons && mkdirp dist/assets/images/icons && svg-sprite-generate -d app/common/icons -o dist/assets/images/icons/icons.svg",
     "server": "browser-sync start --server --files 'dist/assets/*'",
-    "copy": "mkdirp dist/assets/fonts && cp app/common/fonts/**/* dist/assets/fonts/",
+    "copy": "mkdirp dist/assets/fonts && cp app/common/fonts/* dist/assets/fonts/",
     "scss": "node-sass --output-style compressed -o dist/assets/styles app/common/styles/app.scss",
     "build:styles": "npm run scss && npm run autoprefixer",
     "build:scripts": "npm run build && npm run uglify",
     "build:images": "npm run imagemin && npm run icons",
-    "build:all": "npm run clean && npm run build:styles && npm run build:scripts && npm run build:images",
+    "build:all": "npm run clean && npm run copy && npm run build:styles && npm run build:scripts && npm run build:images",
     "watch:styles": "onchange 'app/**/*.scss' -- npm run build:styles",
     "watch:scripts": "onchange 'app/**/*.js' -- npm run build:scripts",
     "watch": "parallelshell \"npm run server\" \"npm run watch:styles\" \"npm run watch:scripts\"",
     "start": "npm run build:all && npm run watch",
-    "production": "npm run clear && npm run build:all && npm run copy"
+    "production": "npm run clear && npm run build:all"
   },
   "author": "Alesia and Jane",
   "license": "ISC",
@@ -43,6 +43,7 @@
   "dependencies": {
     "git": "^0.1.5",
     "underscore": "^1.9.1",
-    "underscore-node": "^0.1.2"
+    "underscore-node": "^0.1.2",
+    "underscore-template-loader": "^1.0.0"
   }
 }

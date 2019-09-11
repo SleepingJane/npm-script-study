@@ -10,7 +10,7 @@ const config = {
         path: path.resolve(__dirname, 'dist/assets/scripts'),
         filename: "[name].min.js"
     },
-    devtool: isProduction ? false : "source-map"
+	devtool: isProduction ? false : "source-map",
 };
 
 module.exports = config;
