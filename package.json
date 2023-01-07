@@ -45,6 +45,6 @@
     "git": "^0.1.5",
     "underscore": "^1.9.1",
     "underscore-node": "^0.1.2",
-    "underscore-template-loader": "^1.0.0"
+    "underscore-template-loader": "^1.2.0"
   }
 }
